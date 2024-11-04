@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property> <!--El driver de acceso a la base de datos-->
-    <property name="connection.url">jdbc:mysql://localhost/tutorial</property> <!--La base de datos a la que me voy a conectar-->
+    <property name="connection.url">jdbc:mysql://localhost/multas</property> <!--La base de datos a la que me voy a conectar-->
     <property name="connection.username">root</property> <!--Usuario-->
     <property name="connection.password">toor</property> <!--Contraseña-->
     <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property> <!--Dialecto de las sentencias. Depende del lenguaje (No es igual en MySQL que en Mongo)-->

@@ -1,14 +1,15 @@
 package com.erikat.hibernate_coches_multas.scenes;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-public class CocheController {
-    @FXML
-    private Label welcomeText;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+public class CocheController implements Initializable {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }
