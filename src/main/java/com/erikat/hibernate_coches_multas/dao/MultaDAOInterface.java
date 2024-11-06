@@ -1,6 +1,5 @@
 package com.erikat.hibernate_coches_multas.dao;
 
-import com.erikat.hibernate_coches_multas.model.Coche;
 import com.erikat.hibernate_coches_multas.model.Multa;
 
 import java.util.List;

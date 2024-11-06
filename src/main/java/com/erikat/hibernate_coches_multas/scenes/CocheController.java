@@ -2,19 +2,15 @@ package com.erikat.hibernate_coches_multas.scenes;
 
 import com.erikat.hibernate_coches_multas.dao.CocheDAO;
 import com.erikat.hibernate_coches_multas.model.Coche;
-import com.erikat.hibernate_coches_multas.model.Multa;
 import com.erikat.hibernate_coches_multas.util.FXUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -48,9 +44,6 @@ public class CocheController implements Initializable {
     private TextField modeloTField;
 
     @FXML
-    private Button multaBtt;
-
-    @FXML
     private ComboBox<String> tipoCBox;
 
     @FXML
@@ -61,7 +54,7 @@ public class CocheController implements Initializable {
     /*--------------------------------------------------------------------------------------------*/
 
     @FXML
-    void onActualizarClick(ActionEvent event) { //Función que salta al dar a "Actualizar"
+    void onActualizarClick() { //Función que salta al dar a "Actualizar"
         /*
         Requisitos para que se actualice:
             1. Todos los campos estén rellenos
@@ -95,7 +88,7 @@ public class CocheController implements Initializable {
     /*--------------------------------------------------------------------------------------------*/
 
     @FXML
-    void onBorrarClick(ActionEvent event) { //Función que salta al dar a "Borrar"
+    void onBorrarClick() { //Función que salta al dar a "Borrar"
         /*
         Requisitos para que se borre:
             1. El campo de la matrícula tiene información
@@ -125,7 +118,7 @@ public class CocheController implements Initializable {
     /*--------------------------------------------------------------------------------------------*/
 
     @FXML
-    void onContentClicked(MouseEvent event) { //Función que salta al pulsar un elemento de la tabla
+    void onContentClicked() { //Función que salta al pulsar un elemento de la tabla
         Coche coche = cochesTView.getSelectionModel().getSelectedItem();
         if (coche!=null){
             matrTField.setText(coche.getMatricula());
@@ -138,7 +131,7 @@ public class CocheController implements Initializable {
     /*--------------------------------------------------------------------------------------------*/
 
     @FXML
-    void onInsertarClick(ActionEvent event) { //Función que salta al dar a "Insertar"
+    void onInsertarClick() { //Función que salta al dar a "Insertar"
         /*
         Requisitos para que se inserte:
             1. Todos los campos estén rellenos
@@ -165,14 +158,14 @@ public class CocheController implements Initializable {
     /*--------------------------------------------------------------------------------------------*/
 
     @FXML
-    void onLimpiarClick(ActionEvent event) { //Función que salta al dar a "Limpiar"
+    void onLimpiarClick() { //Función que salta al dar a "Limpiar"
         flush(); //Llama a la función de limpieza de formulario
     }
 
     /*--------------------------------------------------------------------------------------------*/
 
     @FXML
-    void onMultasClick(ActionEvent event) {
+    void onMultasClick() {
         if (matrTField.getText().isEmpty()){
             FXUtils.makeAlert(Alert.AlertType.ERROR, "Rellena el campo de matrícula o selecciona un coche de la tabla", "Error");
         } else {

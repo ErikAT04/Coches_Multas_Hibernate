@@ -6,7 +6,6 @@ import com.erikat.hibernate_coches_multas.model.Multa;
 import com.erikat.hibernate_coches_multas.util.FXUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -46,7 +45,7 @@ public class MultaController {
     private TextField precioTField;
 
     @FXML
-    void onActualizarClick(ActionEvent event) {
+    void onActualizarClick() {
         if (idTField.getText().isEmpty() || precioTField.getText().isEmpty() || datePicker.getValue()==null){
             FXUtils.makeAlert(Alert.AlertType.ERROR, "Los campos deben estar rellenos", "Error de campos");
         } else {
@@ -57,7 +56,7 @@ public class MultaController {
 
                 Multa multa = multaDAO.buscarMulta(id);
                 if(multa!=null){
-                    Multa multaNueva = new Multa(precio, fecha, cocheMultado);
+                    Multa multaNueva = new Multa(id, precio, fecha, cocheMultado);
                     if (multaDAO.modificarMulta(multaNueva)) {
                         FXUtils.makeAlert(Alert.AlertType.INFORMATION, "Multa actualizada correctamente", "Actualización");
                         tableRefresh();
@@ -74,7 +73,7 @@ public class MultaController {
     }
 
     @FXML
-    void onBorrarClick(ActionEvent event) {
+    void onBorrarClick() {
         if (idTField.getText().isEmpty()){
             FXUtils.makeAlert(Alert.AlertType.ERROR, "Debe haber información en el campo de id", "Error de campos");
         } else {
@@ -102,13 +101,9 @@ public class MultaController {
     }
 
     @FXML
-    void onDateChosen(ActionEvent event) {
+    void onDateChosen() {
         try {
             LocalDate date = datePicker.getValue();
-            if (date.isAfter(LocalDate.now())){
-                FXUtils.makeAlert(Alert.AlertType.ERROR, "La fecha no puede ser futura", "Fecha");
-                datePicker.setValue(LocalDate.now());
-            }
         }catch (Exception e){
             FXUtils.makeAlert(Alert.AlertType.ERROR, "Fecha no introducida correctamente", "Fecha");
             datePicker.setValue(LocalDate.now());
@@ -116,7 +111,7 @@ public class MultaController {
     }
 
     @FXML
-    void onInsertarClick(ActionEvent event) {
+    void onInsertarClick() {
         if (idTField.getText().isEmpty()){
             if (precioTField.getText().isEmpty() || datePicker.getValue()==null){
                 FXUtils.makeAlert(Alert.AlertType.ERROR, "Los datos de precio y fecha deben tener contenido", "Error de campos");
@@ -141,7 +136,7 @@ public class MultaController {
     }
 
     @FXML
-    void onItemPicked(ActionEvent event) {
+    void onItemPicked() {
         Multa multa = multaTView.getSelectionModel().getSelectedItem();
         if (multa!=null){
             idTField.setText(String.valueOf(multa.getId()));
@@ -151,7 +146,7 @@ public class MultaController {
     }
 
     @FXML
-    void onLimpiarClick(ActionEvent event) {
+    void onLimpiarClick() {
         flush();
     }
 

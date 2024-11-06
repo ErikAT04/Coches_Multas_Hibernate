@@ -1,6 +1,5 @@
 package com.erikat.hibernate_coches_multas.dao;
 
-import com.erikat.hibernate_coches_multas.model.Coche;
 import com.erikat.hibernate_coches_multas.model.Multa;
 import com.erikat.hibernate_coches_multas.util.HibernateUtils;
 import org.hibernate.Session;
@@ -9,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MultaDAO implements MultaDAOInterface{
-    private Session session;
+    private final Session session;
     public MultaDAO(){
         this.session = HibernateUtils.getSession();
     }
@@ -20,12 +19,12 @@ public class MultaDAO implements MultaDAOInterface{
             session.beginTransaction();
             session.save(multa);
             session.getTransaction().commit();
-            session.flush();
+            session.clear();
             return true;
         }catch (Exception e){
             System.out.println("Error de BD");
             session.getTransaction().rollback();
-            session.flush();
+            session.clear();
             return false;
         }
     }
@@ -35,13 +34,13 @@ public class MultaDAO implements MultaDAOInterface{
         Multa multa = null;
         try {
             session.beginTransaction();
-            multa = (Multa) session.get(Multa.class, id);
+            multa = session.get(Multa.class, id);
             session.getTransaction().commit();
         }catch (Exception e){
-            System.out.println("Error de BD");
+            System.out.println("Error de BD: " + e.getMessage());
             session.getTransaction().rollback();
         }
-        session.flush();
+        session.clear();
         return multa;
     }
 
@@ -51,12 +50,12 @@ public class MultaDAO implements MultaDAOInterface{
             session.beginTransaction();
             session.update(multa);
             session.getTransaction().commit();
-            session.flush();
+            session.clear();
             return true;
         }catch (Exception e){
-            System.out.println("Error de BD");
+            System.out.println("Error de BD: " + e.getMessage());
             session.getTransaction().rollback();
-            session.flush();
+            session.clear();
             return false;
         }
     }
@@ -67,12 +66,12 @@ public class MultaDAO implements MultaDAOInterface{
             session.beginTransaction();
             session.delete(multa);
             session.getTransaction().commit();
-            session.flush();
+            session.clear();
             return true;
         }catch (Exception e){
             System.out.println("Error de BD");
             session.getTransaction().rollback();
-            session.flush();
+            session.clear();
             return false;
         }
     }

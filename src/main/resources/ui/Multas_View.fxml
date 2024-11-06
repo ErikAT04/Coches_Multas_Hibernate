@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="546.0" prefWidth="399.0" stylesheets="@styles/mainAppStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.erikat.hibernate_coches_multas.scenes.MultaController">
    <children>
       <Label layoutX="53.0" layoutY="49.0" text="Matrícula:" />
@@ -19,7 +18,7 @@
       <TextField fx:id="precioTField" layoutX="123.0" layoutY="137.0" />
       <Label layoutX="74.0" layoutY="194.0" text="Fecha:" />
       <DatePicker fx:id="datePicker" layoutX="124.0" layoutY="190.0" onAction="#onDateChosen" prefHeight="27.0" prefWidth="179.0" />
-      <TableView fx:id="multaTView" layoutX="30.0" layoutY="288.0" onSort="#onItemPicked" prefHeight="200.0" prefWidth="340.0">
+      <TableView fx:id="multaTView" layoutX="30.0" layoutY="288.0" onMouseClicked="#onItemPicked" prefHeight="200.0" prefWidth="340.0">
         <columns>
           <TableColumn fx:id="idTCol" prefWidth="60.0" text="ID" />
           <TableColumn fx:id="precioTCol" prefWidth="140.0" text="Precio" />

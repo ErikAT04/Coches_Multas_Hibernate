@@ -7,8 +7,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtils {
-    static SessionFactory factory = null;
-    static Session session = null;
+    static SessionFactory factory;
+    static Session session;
     static {
         Configuration cfg = new Configuration();
         cfg.configure(R.getConfig("hibernate.cfg.xml"));
@@ -20,9 +20,6 @@ public class HibernateUtils {
         session = factory.openSession();
     }
 
-    public static SessionFactory getSessionFactory() {
-        return factory;
-    }
     public static Session getSession(){return session;}
 
 }

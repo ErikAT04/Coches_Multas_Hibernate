@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CocheDAO implements CocheDAOInterface{
-    private Session session;
+    private final Session session;
     public CocheDAO(){
         this.session = HibernateUtils.getSession();
     }
@@ -33,12 +33,11 @@ public class CocheDAO implements CocheDAOInterface{
         Coche coche = null;
         try{
             session.beginTransaction();
-            coche = (Coche) session.createQuery("from Coche where matricula = '" + matricula +"'", Coche.class).uniqueResult();
+            coche = session.createQuery("from Coche where matricula = '" + matricula +"'", Coche.class).uniqueResult();
             session.getTransaction().commit();
             session.clear();
         }catch (Exception e){
             System.out.println("Error de BD");
-            System.out.println(e.getCause());
             session.getTransaction().rollback();
             session.clear();
         }
@@ -81,7 +80,7 @@ public class CocheDAO implements CocheDAOInterface{
     public List<Coche> listarCoches() {
         List<Coche> coches = new ArrayList<>();
         try{
-            coches = (List<Coche>) session.createQuery(" from Coche", Coche.class).list();
+            coches = session.createQuery(" from Coche", Coche.class).list();
         }catch (Exception e){
             System.out.println("Error de BD: " +e.getMessage());
             System.out.println(e.getMessage());

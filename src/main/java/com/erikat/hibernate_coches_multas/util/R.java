@@ -1,8 +1,6 @@
 package com.erikat.hibernate_coches_multas.util;
 
-import javax.swing.*;
 import java.io.File;
-import java.io.InputStream;
 import java.net.URL;
 
 public class R {

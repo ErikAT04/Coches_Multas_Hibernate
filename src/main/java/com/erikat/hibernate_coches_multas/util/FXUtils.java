@@ -20,14 +20,14 @@ public class FXUtils {
         dialog.getStylesheets().add(R.getScene("styles/mainAppStyle.css").toString());
         return alert.showAndWait(); //Devuelve el botón que pulse el usuario
     }
-    public static boolean anyContentIsNull(List<TextField> texts, List<ComboBox> cbList){
+    public static boolean anyContentIsNull(List<TextField> texts, List<ComboBox<String>> cbList){
         boolean res = false;
         for (TextField tfield:texts){
             if (tfield.getText().isEmpty()){
                 res = true;
             }
         }
-        for (ComboBox cb:cbList){
+        for (ComboBox<String> cb:cbList){
             if (cb.getValue()==null){
                 res = true;
             }
