@@ -11,7 +11,7 @@ public class HibernateUtils {
     static Session session = null;
     static {
         Configuration cfg = new Configuration();
-        cfg.configure("hibernate.cfg.xml");
+        cfg.configure(R.getConfig("hibernate.cfg.xml"));
         // Se registran las clases que hay que MAPEAR con cada tabla de la base de datos
         cfg.addAnnotatedClass(Coche.class);
         cfg.addAnnotatedClass(Multa.class);

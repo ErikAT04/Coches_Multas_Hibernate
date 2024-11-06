@@ -1,11 +1,13 @@
 package com.erikat.hibernate_coches_multas.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "coches")
-public class Coche {
+public class Coche implements Serializable {
     /*
   TABLE coches (
   id integer NOT NULL AUTO_INCREMENT,
@@ -32,7 +34,7 @@ public class Coche {
     @Column(name = "tipo")
     private String tipo;
 
-    @OneToMany(mappedBy = "multas", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "coche", cascade = CascadeType.ALL)
     private List<Multa> multas; //Un coche puede tener varias multas
 
     public Coche(String matricula, String marca, String modelo, String tipo) {
@@ -100,5 +102,13 @@ public class Coche {
 
     public void setMultas(List<Multa> multas) {
         this.multas = multas;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Coche coche = (Coche) o;
+        return Objects.equals(getMatricula(), coche.getMatricula()) && Objects.equals(getMarca(), coche.getMarca()) && Objects.equals(getModelo(), coche.getModelo()) && Objects.equals(getTipo(), coche.getTipo());
     }
 }

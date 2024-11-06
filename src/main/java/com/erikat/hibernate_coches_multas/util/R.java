@@ -6,11 +6,11 @@ import java.io.InputStream;
 import java.net.URL;
 
 public class R {
-    public static InputStream getConfig(String path){
-        return Thread.currentThread().getContextClassLoader().getResourceAsStream("config"+ File.separator+path);
+    public static URL getConfig(String path){
+        return Thread.currentThread().getContextClassLoader().getResource("config"+ File.separator+path);
     }
 
-    public static URL getResource(String path){
+    public static URL getScene(String path){
         return Thread.currentThread().getContextClassLoader().getResource("ui/"+path);
     }
 }

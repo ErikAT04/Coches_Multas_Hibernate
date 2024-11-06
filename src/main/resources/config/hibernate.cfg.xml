@@ -10,6 +10,7 @@
     <property name="connection.password">toor</property> <!--Contraseña-->
     <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property> <!--Dialecto de las sentencias. Depende del lenguaje (No es igual en MySQL que en Mongo)-->
     <property name="hibernate.show_sql">true</property> <!---->
-   
+        <mapping class="com.erikat.hibernate_coches_multas.model.Coche"/>
+        <mapping class="com.erikat.hibernate_coches_multas.model.Multa"/>
     </session-factory>
 </hibernate-configuration>

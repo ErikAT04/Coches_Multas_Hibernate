@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.erikat.hibernate_coches_multas.scenes.CocheController"/>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="518.0" stylesheets="@styles/mainAppStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.erikat.hibernate_coches_multas.scenes.CocheController">
+   <children>
+      <TextField fx:id="matrTField" layoutX="147.0" layoutY="51.0" />
+      <TextField fx:id="marcaTField" layoutX="147.0" layoutY="100.0" />
+      <TextField fx:id="modeloTField" layoutX="147.0" layoutY="149.0" />
+      <ComboBox fx:id="tipoCBox" layoutX="147.0" layoutY="198.0" prefWidth="150.0" />
+      <Button layoutX="371.0" layoutY="48.0" mnemonicParsing="false" onAction="#onInsertarClick" prefHeight="31.0" prefWidth="100.0" text="Insertar">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="371.0" layoutY="97.0" mnemonicParsing="false" onAction="#onActualizarClick" prefHeight="31.0" prefWidth="100.0" text="Actualizar">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="371.0" layoutY="147.0" mnemonicParsing="false" onAction="#onBorrarClick" prefHeight="31.0" prefWidth="100.0" text="Borrar">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="371.0" layoutY="197.0" mnemonicParsing="false" onAction="#onLimpiarClick" prefHeight="31.0" prefWidth="100.0" text="Limpiar">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <TableView fx:id="cochesTView" layoutX="35.0" layoutY="244.0" onMouseClicked="#onContentClicked" prefHeight="200.0" prefWidth="440.0">
+         <columns>
+            <TableColumn fx:id="idTCol" prefWidth="40.0" text="Id" />
+            <TableColumn fx:id="matrTCol" prefWidth="100.0" text="Matrícula" />
+            <TableColumn fx:id="marcaTCol" prefWidth="100.0" text="Marca" />
+            <TableColumn fx:id="modeloTCol" prefWidth="100.0" text="Modelo" />
+            <TableColumn fx:id="tipoTCol" prefWidth="100.0" text="Tipo" />
+         </columns>
+      </TableView>
+      <Button fx:id="multaBtt" layoutX="194.0" layoutY="465.0" mnemonicParsing="false" onAction="#onMultasClick" prefHeight="31.0" prefWidth="131.0" text="Ver Multas">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="73.0" layoutY="101.0" style="-fx-font-size: 18;" text="Marca" />
+      <Label layoutX="46.0" layoutY="52.0" style="-fx-font-size: 18;" text="Matrícula" />
+      <Label layoutX="65.0" layoutY="149.0" style="-fx-font-size: 18;" text="Modelo" />
+      <Label layoutX="88.0" layoutY="199.0" style="-fx-font-size: 18;" text="Tipo" />
+   </children>
+</AnchorPane>

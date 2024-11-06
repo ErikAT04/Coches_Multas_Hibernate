@@ -10,5 +10,5 @@ public interface MultaDAOInterface {
     Multa buscarMulta(int id);
     boolean modificarMulta(Multa multa);
     boolean borrarMulta(Multa multa);
-    List<Multa> listarMultas();
+    List<Multa> listarMultas(String matricula);
 }

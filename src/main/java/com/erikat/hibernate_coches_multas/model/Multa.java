@@ -1,11 +1,12 @@
 package com.erikat.hibernate_coches_multas.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "multas")
-public class Multa {
+public class Multa implements Serializable {
     /*
     TABLE multas (
   id_multa integer unsigned NOT NULL AUTO_INCREMENT,

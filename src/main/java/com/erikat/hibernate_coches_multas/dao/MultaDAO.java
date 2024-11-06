@@ -5,6 +5,7 @@ import com.erikat.hibernate_coches_multas.model.Multa;
 import com.erikat.hibernate_coches_multas.util.HibernateUtils;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MultaDAO implements MultaDAOInterface{
@@ -77,12 +78,12 @@ public class MultaDAO implements MultaDAOInterface{
     }
 
     @Override
-    public List<Multa> listarMultas() {
-        List<Multa> multas = null;
+    public List<Multa> listarMultas(String matricula) {
+        List<Multa> multas = new ArrayList<>();
         try{
-            multas = session.createQuery("from multas", Multa.class).getResultList();
+            multas = session.createQuery("from Multa where matricula = '" + matricula + "'", Multa.class).getResultList();
         }catch (Exception e){
-            System.out.println("Error de BD");
+            System.out.println("Error de BD" + e.getMessage());
         }
         return multas;
     }

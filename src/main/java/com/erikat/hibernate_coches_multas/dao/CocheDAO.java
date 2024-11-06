@@ -4,6 +4,7 @@ import com.erikat.hibernate_coches_multas.model.Coche;
 import com.erikat.hibernate_coches_multas.util.HibernateUtils;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CocheDAO implements CocheDAOInterface{
@@ -17,12 +18,12 @@ public class CocheDAO implements CocheDAOInterface{
             session.beginTransaction();
             session.save(coche);
             session.getTransaction().commit();
-            session.flush();
+            session.clear();
             return true;
         }catch (Exception e){
             System.out.println("Error de BD");
             session.getTransaction().rollback();
-            session.flush();
+            session.clear();
             return false;
         }
     }
@@ -32,13 +33,15 @@ public class CocheDAO implements CocheDAOInterface{
         Coche coche = null;
         try{
             session.beginTransaction();
-            coche = (Coche) session.createQuery("from coche where matricula = " + matricula, Coche.class).uniqueResult();
+            coche = (Coche) session.createQuery("from Coche where matricula = '" + matricula +"'", Coche.class).uniqueResult();
             session.getTransaction().commit();
+            session.clear();
         }catch (Exception e){
             System.out.println("Error de BD");
+            System.out.println(e.getCause());
             session.getTransaction().rollback();
+            session.clear();
         }
-        session.flush();
         return coche;
     }
 
@@ -48,12 +51,12 @@ public class CocheDAO implements CocheDAOInterface{
             session.beginTransaction();
             session.update(coche);
             session.getTransaction().commit();
-            session.flush();
+            session.clear();
             return true;
         } catch (Exception e){
-            System.out.println("Error de BD");
+            System.out.println("Error de BD: " +e.getCause());
             session.getTransaction().rollback();
-            session.flush();
+            session.clear();
             return false;
         }
     }
@@ -64,24 +67,26 @@ public class CocheDAO implements CocheDAOInterface{
             session.beginTransaction();
             session.delete(coche);
             session.getTransaction().commit();
-            session.flush();
+            session.clear();
             return true;
         } catch (Exception e){
-            System.out.println("Error de BD");
+            System.out.println("Error de BD: " +e.getCause());
             session.getTransaction().rollback();
-            session.flush();
+            session.clear();
             return false;
         }
     }
 
     @Override
     public List<Coche> listarCoches() {
-        List<Coche> coches = null;
+        List<Coche> coches = new ArrayList<>();
         try{
-            coches = session.createQuery("from coches", Coche.class).getResultList();
+            coches = (List<Coche>) session.createQuery(" from Coche", Coche.class).list();
         }catch (Exception e){
-            System.out.println("Error de BD");
+            System.out.println("Error de BD: " +e.getMessage());
+            System.out.println(e.getMessage());
         }
+        session.clear();
         return coches;
     }
 }
