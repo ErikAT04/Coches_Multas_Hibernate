@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS Multas;
-CREATE DATABASE Multas;
+DROP DATABASE IF EXISTS CochesMultas;
+CREATE DATABASE CochesMultas;
 USE Multas;
 CREATE TABLE coches (
   id integer NOT NULL AUTO_INCREMENT,
@@ -25,7 +25,7 @@ CREATE TABLE multas (
   ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
 
 
-INSERT INTO Multas (matricula, precio, fecha)
+INSERT INTO multas (matricula, precio, fecha)
 VALUES ('1234AAA', 200, '2023-12-12'),
        ('1234AAA', 700, '2023-12-13'),
        ('1234AAA', 50, '2023-12-14'),
